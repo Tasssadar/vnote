@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VNote</string>
+    
+    <string name="import_t">Importovat</string>
+    <string name="selected">Výběr: %1$d %2$s</string>
+    <string name="imported">Import: %1$d %2$s</string>
+    <string name="new_note">Nová poznámka</string>
+    <string name="import_notes">Importovat poznámky</string>
+    <string name="edit_note">Upravit poznámku</string>
+    <string name="cancel">Zrušit</string>
+    <string name="save">Uložit</string>
+    <string name="delete">Smazat</string>
+    <string name="note_selected">Výběr: %1$d %2$s</string>
+    <string name="erase_notes_text">Opravdu chcete smazat %1$d %2$s?</string>
+    <string name="erase_notes_title">Smazat poznámky</string>
+    <string name="search">Hledat</string>
+
+    <plurals name="file_plural">
+        <item quantity="one">soubor</item>
+        <item quantity="few">soubory</item>
+        <item quantity="other">souborů</item>
+    </plurals>
+    
+    <plurals name="note_plural">
+        <item quantity="one">poznámka</item>
+        <item quantity="few">poznámky</item>
+        <item quantity="other">poznámek</item>
+    </plurals>
+</resources>
