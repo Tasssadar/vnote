@@ -1,8 +1,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/new_note"
         android:title="@string/new_note"
-        android:showAsAction="always|withText"/>
+        android:showAsAction="ifRoom|withText"/>
     <item android:id="@+id/import_note"
         android:title="@string/import_t"
-        android:showAsAction="always|withText"/>
+        android:showAsAction="ifRoom|withText"/>
+    <!--<item android:id="@+id/menu_search"
+        android:title="@string/search"
+        android:icon="@drawable/action_search"
+        android:showAsAction="ifRoom|collapseActionView"
+        android:actionViewClass="android.widget.SearchView" />-->
 </menu>

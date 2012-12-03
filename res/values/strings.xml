@@ -14,6 +14,7 @@
     <string name="note_selected">%1$d %2$s selected</string>
     <string name="erase_notes_text">Do you really want to delete these %1$d %2$s?</string>
     <string name="erase_notes_title">Delete notes</string>
+    <string name="search">Search</string>
     
     <plurals name="file_plural">
         <item quantity="one">file</item>
