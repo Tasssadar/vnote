@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/new_note"
+        android:title="@string/new_note"
+        android:showAsAction="always|withText"/>
+    <item android:id="@+id/import_note"
+        android:title="@string/import_t"
+        android:showAsAction="always|withText"/>
+</menu>

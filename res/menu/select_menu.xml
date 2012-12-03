@@ -1,0 +1,6 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/delete_notes"
+        android:title="@string/delete"
+        android:showAsAction="always|withText"
+        android:icon="@drawable/content_discard"/>
+</menu>
