@@ -15,6 +15,7 @@
     <string name="erase_notes_text">Opravdu chcete smazat %1$d %2$s?</string>
     <string name="erase_notes_title">Smazat poznámky</string>
     <string name="search">Hledat</string>
+    <string name="share">Sdílet</string>
 
     <plurals name="file_plural">
         <item quantity="one">soubor</item>

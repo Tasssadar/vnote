@@ -1,4 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_share"
+          android:title="@string/share"
+          android:showAsAction="always|withText"
+          android:actionProviderClass="android.widget.ShareActionProvider" />
     <item android:id="@+id/delete_notes"
         android:title="@string/delete"
         android:showAsAction="always|withText"

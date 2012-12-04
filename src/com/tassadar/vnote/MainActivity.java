@@ -5,6 +5,7 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -14,8 +15,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CheckBox;
-import android.widget.SearchView;
+import android.widget.ShareActionProvider;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,13 +39,21 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         setContentView(R.layout.main);
         
         m_selected = new ArrayList<CheckBox>();
+        
+        Intent intent = getIntent();
+        String action = intent.getAction();
+
+        if (Intent.ACTION_SEND.equals(action) || Intent.ACTION_VIEW.equals(action))
+            handleIntentSingle(intent);
+        else if (Intent.ACTION_SEND_MULTIPLE.equals(action))
+            handleIntentMultiple(intent);
 
         VntManager.loadNotes(this);
         loadNotes();
         
         getListView().setOnItemClickListener(this);
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_activity, menu);
@@ -78,6 +90,12 @@ public class MainActivity extends ListActivity implements OnItemClickListener
                 loadNotes();
                 break;
         }
+    }
+    
+    private void createShareIntent() {
+        m_share_intent = new Intent(Intent.ACTION_SEND_MULTIPLE);
+        m_share_intent.setType("*/*");
+        updateShareIntent();
     }
     
     private void loadNotes() {
@@ -137,7 +155,24 @@ public class MainActivity extends ListActivity implements OnItemClickListener
             String plural = getResources().getQuantityString(R.plurals.note_plural, m_selected.size());
             String str = String.format(getString(R.string.note_selected), m_selected.size(), plural);
             m_action_mode.setTitle(str);
+
+            updateShareIntent();
         }
+    }
+    
+    private void updateShareIntent() {
+        if(m_share_intent == null)
+            return;
+
+        ArrayList<Uri> uris = new ArrayList<Uri>();
+        for(CheckBox b : m_selected) {
+            int idx = getListView().getPositionForView(b);
+            VntNote n = VntManager.getNotes().get(idx);
+            
+            Uri u = Uri.fromFile(n.m_file);
+            uris.add(u);
+        }
+        m_share_intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
     }
     
     private void deselectAll() {
@@ -184,6 +219,34 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         }
     }
     
+    private void handleIntentSingle(Intent intent) {
+        Uri u = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        if (u == null)
+            u = intent.getData();
+
+        if(u == null)
+            return;
+        
+        VntManager.importFile(this, u.getPath());
+        
+        String plural = getResources().getQuantityString(R.plurals.file_plural, 1);
+        String str = String.format(getString(R.string.imported), 1, plural);
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    private void handleIntentMultiple(Intent intent) {
+        ArrayList<Uri> uris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+        if (uris == null)
+            return;
+
+        for(Uri u : uris)
+            VntManager.importFile(this, u.getPath());
+        
+        String plural = getResources().getQuantityString(R.plurals.file_plural, uris.size());
+        String str = String.format(getString(R.string.imported), uris.size(), plural);
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+    
     private ActionMode.Callback m_action_mode_callback = new ActionMode.Callback() {
 
         // Called when the action mode is created; startActionMode() was called
@@ -192,6 +255,11 @@ public class MainActivity extends ListActivity implements OnItemClickListener
             // Inflate a menu resource providing context menu items
             MenuInflater inflater = mode.getMenuInflater();
             inflater.inflate(R.menu.select_menu, menu);
+            
+            createShareIntent();
+
+            ShareActionProvider share_provider = (ShareActionProvider) menu.findItem(R.id.menu_share).getActionProvider();
+            share_provider.setShareIntent(m_share_intent);
             return true;
         }
 
@@ -225,4 +293,5 @@ public class MainActivity extends ListActivity implements OnItemClickListener
     
     private ActionMode m_action_mode;
     private ArrayList<CheckBox> m_selected;
+    private Intent m_share_intent;
 }
