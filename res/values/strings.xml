@@ -16,6 +16,7 @@
     <string name="erase_notes_title">Delete notes</string>
     <string name="search">Search</string>
     <string name="share">Share</string>
+    <string name="monospace">Use monospace font</string>
     
     <plurals name="file_plural">
         <item quantity="one">file</item>

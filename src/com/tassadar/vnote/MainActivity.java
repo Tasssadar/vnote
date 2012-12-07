@@ -18,8 +18,6 @@ import android.widget.CheckBox;
 import android.widget.ShareActionProvider;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;

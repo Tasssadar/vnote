@@ -10,7 +10,6 @@
             android:id="@+id/text"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:typeface="monospace"
             android:gravity="top"/>
         </ScrollView>
 </LinearLayout>
