@@ -164,6 +164,9 @@ public class MainActivity extends ListActivity implements OnItemClickListener
 
         ArrayList<Uri> uris = new ArrayList<Uri>();
         for(CheckBox b : m_selected) {
+            if(b == null)
+                continue;
+
             int idx = getListView().getPositionForView(b);
             VntNote n = VntManager.getNotes().get(idx);
             

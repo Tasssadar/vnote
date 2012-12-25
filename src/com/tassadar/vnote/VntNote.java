@@ -1,5 +1,6 @@
 package com.tassadar.vnote;
 
+import android.util.Log;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -29,7 +30,17 @@ public class VntNote implements Comparable<VntNote> {
             }
             in.close();
         }
-        catch(Exception ex) { }
+        catch(Exception ex) {
+            return null;
+        }
+        
+        if (res.m_text == null || res.m_creation_date == null ||
+            res.m_mod_date == null)
+        {
+            Log.e("VNote", "Skipping note beacause something is null!");
+            res = null;
+        }
+
         return res;
     }
     

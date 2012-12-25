@@ -24,7 +24,7 @@ public class NoteActivity extends Activity
         
         if(getIntent() != null && getIntent().getExtras() != null) {
             int idx = getIntent().getExtras().getInt("vntIdx", -1);
-            if(idx != -1)
+            if(idx >= 0 && idx < VntManager.getNotes().size())
             {
                 m_note = VntManager.getNotes().get(idx);
                 TextView t = (TextView)findViewById(R.id.text);

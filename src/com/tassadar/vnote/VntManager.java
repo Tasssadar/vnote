@@ -74,7 +74,11 @@ public class VntManager {
         });
         
         for(File f : list)
-            m_notes.add(VntNote.createFromFile(f));
+        {
+            VntNote n = VntNote.createFromFile(f);
+            if(n != null)
+                m_notes.add(n);
+        }
 
         Collections.sort(m_notes);
     }
