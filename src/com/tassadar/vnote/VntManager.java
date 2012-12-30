@@ -22,7 +22,12 @@ public class VntManager {
         File target = new File(dir, filename);
         while(target.exists())
         {
-            filename = filename.substring(0, filename.lastIndexOf(".vnt")) + "a.vnt";
+            int idx = filename.lastIndexOf(".vnt");
+            if(idx >= 0)
+                filename = filename.substring(0, idx) + "a.vnt";
+            else
+                filename += "a.vnt";
+
             target = new File(dir, filename);
         }
         
