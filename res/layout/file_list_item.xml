@@ -8,13 +8,14 @@
     <CheckBox android:id="@+id/file_select"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:button="@drawable/collections_view_as_list"
-        />
+        android:button="@drawable/collections_view_as_list"/>
     <TextView android:id="@+id/folder_name"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:background="@drawable/transparent_btn"
+        android:clickable="true"/>
     <View android:layout_width="fill_parent"
         android:layout_height="1px"
         android:background="#FF000000"/>

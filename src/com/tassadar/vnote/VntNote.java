@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -16,21 +17,47 @@ public class VntNote implements Comparable<VntNote> {
 
         try {
             BufferedReader in = new BufferedReader(new FileReader(f));
+
+            int body = 0;
             String line;
+            ArrayList<String> lines = new ArrayList<String>();
+
+            while((line = in.readLine()) != null) {
+                line = line.trim();
+
+                if(body == 0 && line.startsWith("BODY;") && line.endsWith("=")) {
+                    body = 1;
+                    lines.add(line.substring(0, line.length()-1));
+                } else if(body == 1) {
+                    String l = lines.get(lines.size()-1);
+                    if(line.endsWith("=")) {
+                         l += line.substring(0, line.length()-1);
+                    } else {
+                        body = 2;
+                        l += line;
+                    }
+                    lines.set(lines.size()-1, l);
+                } else {
+                    lines.add(line);
+                }
+            }
+
+            in.close();
+
+            int idx;
             String head;
             String data;
-            int idx;
-            while((line = in.readLine()) != null)
-            {
-                idx = line.indexOf(":");
-                head = line.substring(0, idx);
-                data = line.substring(idx+1);
+
+            for(String l : lines) {
+                idx = l.indexOf(":");
+                head = l.substring(0, idx);
+                data = l.substring(idx+1);
                 
                 res.handleLine(head, data);
             }
-            in.close();
         }
         catch(Exception ex) {
+            ex.printStackTrace();
             return null;
         }
         
