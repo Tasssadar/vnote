@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -108,15 +109,32 @@ public class VntNote implements Comparable<VntNote> {
     }
     
     private String importSpecialChars(String data) {
-        int c;
+        int c, start, end;
         StringBuilder res = new StringBuilder(data);
         int idx = res.indexOf("=");
+        ByteArray bytes = new ByteArray();
         
-        while(idx != -1) {
-            c = Integer.parseInt(res.substring(idx+1, idx+3), 16);
-            res.replace(idx, idx+3, Character.toString((char)c));
-            ++idx;
-            idx = res.indexOf("=", idx);
+        while(idx >= 0) {
+            bytes.clear();
+            start = idx;
+            while(true)
+            {
+                ++idx;
+                end = idx+2;
+                c = Integer.parseInt(res.substring(idx, end), 16);
+                bytes.append(c);
+                idx = res.indexOf("=", idx);
+                if(idx == -1 || idx != end)
+                    break;
+            }
+
+            try {
+                String str = new String(bytes.toByteArray(), "UTF-8");
+                res.replace(start, end, str);
+                idx -= (end - start) - str.length();
+            } catch(UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         }
 
         return res.toString();
@@ -139,14 +157,25 @@ public class VntNote implements Comparable<VntNote> {
         }
     }
     
+    private static boolean needsEscape(byte c) {
+        return c < 32 || c > 126 || c == 0x3D;
+    }
+    
     private String exportSpecialChars() {
-        StringBuilder res = new StringBuilder(m_text.replace("\n", "\r\n"));
-        for(int i = 0; i < res.length(); ++i) {
-            int c = res.codePointAt(i);
-            if(c == 0x0A || c == 0x0D || c == 0x3D) // \r, \n, =
-            {
-                res.replace(i, i+1, "=" + String.format("%02X", c));
-            }
+        byte[] data = new byte[0];
+
+        try {
+            data = m_text.replace("\n", "\r\n").getBytes("UTF-8");
+        } catch(UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        StringBuilder res = new StringBuilder();
+        for(int i = 0; i < data.length; ++i) {
+            if(VntNote.needsEscape(data[i]))
+                res.append("=").append(String.format("%02X", ((int)data[i]) & 0xFF));
+            else
+                res.append((char)data[i]);
         }
         return res.toString();
     }
