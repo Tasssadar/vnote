@@ -62,7 +62,18 @@ public class FileListItem {
             m_listener.onFileItemChecked(m_file_name, m_is_folder, false);
         }
     }
-    
+
+    public void setSelected(boolean selected) {
+        if(m_is_folder)
+            return;
+
+        CheckBox b = (CheckBox)m_view.findViewById(R.id.file_select);
+        if(b.isChecked() == selected)
+            return;
+
+        b.setChecked(selected);
+    }
+
     private View m_view;
     private String m_file_name;
     private FileItemClicked m_listener;

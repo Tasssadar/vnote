@@ -17,6 +17,8 @@
     <string name="search">Hledat</string>
     <string name="share">Sdílet</string>
     <string name="monospace">Používat monospace font</string>
+    <string name="all">Všechny</string>
+    <string name="none">Žádné</string>
 
     <plurals name="file_plural">
         <item quantity="one">soubor</item>

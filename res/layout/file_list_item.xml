@@ -3,15 +3,15 @@
     android:layout_width="fill_parent" android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:minHeight="48dp"
-    android:gravity="center|left"
-    android:padding="5dp">
+    android:gravity="center|left">
     <CheckBox android:id="@+id/file_select"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:button="@drawable/collections_view_as_list"/>
     <TextView android:id="@+id/folder_name"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="left|center"
         android:textSize="20dp"
         android:visibility="gone"
         android:background="@drawable/transparent_btn"

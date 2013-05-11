@@ -33,7 +33,8 @@ public class FileManagerActivity extends Activity implements FileItemClicked
         
         m_scroll_pos = new HashMap<String, Integer>();
         m_selected = new ArrayList<String>();
-        
+        m_fileItems = new ArrayList<FileListItem>();
+
         getActionBar().setHomeButtonEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         
@@ -52,7 +53,7 @@ public class FileManagerActivity extends Activity implements FileItemClicked
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch(keyCode) {
@@ -66,10 +67,11 @@ public class FileManagerActivity extends Activity implements FileItemClicked
         }
         return super.onKeyDown(keyCode, event);
     }
-    
+
     private void loadPath(String path) {
         m_cur_path = path;
         m_selected.clear();
+        m_fileItems.clear();
         updateSelected();
         
         TextView t = (TextView)findViewById(R.id.path_text);
@@ -98,11 +100,11 @@ public class FileManagerActivity extends Activity implements FileItemClicked
             else
                 fileNames.add(f.getName());
         }
-        
+
         Collator collator = Collator.getInstance(new Locale("cs", "CZ"));
         Collections.sort(fileNames, collator);
         Collections.sort(folderNames, collator);
-        
+
         if(!path.equals(START_PATH))
             folderNames.add(0, "..");
         
@@ -110,12 +112,13 @@ public class FileManagerActivity extends Activity implements FileItemClicked
              FileListItem listItem = new FileListItem(this, null, folderNames.get(i), true);
              l.addView(listItem.getView());
         }
-        
+
         for(int i = 0; i < fileNames.size(); ++i) {
              FileListItem listItem = new FileListItem(this, null, fileNames.get(i), false);
              l.addView(listItem.getView());
+             m_fileItems.add(listItem);
         }
-        
+
         if(m_scroll_pos.containsKey(m_cur_path))
         {
             ScrollView v = (ScrollView)findViewById(R.id.scroll_view);
@@ -127,7 +130,7 @@ public class FileManagerActivity extends Activity implements FileItemClicked
                 }});
         }
     }
-    
+
     @Override
     public void onFileItemChecked(String name, boolean is_folder, boolean checked) {
         if(is_folder) {
@@ -137,7 +140,6 @@ public class FileManagerActivity extends Activity implements FileItemClicked
             else
                 path += "/" + name;
             ScrollView v = (ScrollView)findViewById(R.id.scroll_view);
-            int y = v.getScrollY();
             m_scroll_pos.put(m_cur_path, v.getScrollY());
             loadPath(path);
         }
@@ -150,7 +152,7 @@ public class FileManagerActivity extends Activity implements FileItemClicked
             updateSelected();
         }
     }
-    
+
     private void updateSelected() {
         String plural = getResources().getQuantityString(R.plurals.file_plural, m_selected.size());
         String str = String.format(getString(R.string.selected), m_selected.size(), plural);
@@ -160,7 +162,7 @@ public class FileManagerActivity extends Activity implements FileItemClicked
         Button b = (Button)findViewById(R.id.btn_import);
         b.setEnabled(!m_selected.isEmpty());
     }
-    
+
     public void onImportClicked(View v) {
         for(String s : m_selected) {
             VntManager.importFile(this, s);
@@ -172,8 +174,19 @@ public class FileManagerActivity extends Activity implements FileItemClicked
         setResult(RESULT_OK);
         finish();
     }
-    
+
+    public void onAllClicked(View v) {
+       for(FileListItem i : m_fileItems)
+           i.setSelected(true);
+    }
+
+    public void onNoneClicked(View v) {
+        for(FileListItem i : m_fileItems)
+            i.setSelected(false);
+    }
+
     private String m_cur_path;
     private HashMap<String, Integer> m_scroll_pos;
     private ArrayList<String> m_selected;
+    private ArrayList<FileListItem> m_fileItems;
 }

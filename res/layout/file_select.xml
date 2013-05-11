@@ -22,6 +22,16 @@
         android:orientation="horizontal"
         android:gravity="center|left"
         android:padding="4dp">
+        <Button android:id="@+id/btn_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all"
+            android:onClick="onAllClicked" />
+        <Button android:id="@+id/btn_none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/none"
+            android:onClick="onNoneClicked" />
         <TextView android:id="@+id/selected_count"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

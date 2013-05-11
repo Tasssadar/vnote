@@ -17,7 +17,9 @@
     <string name="search">Search</string>
     <string name="share">Share</string>
     <string name="monospace">Use monospace font</string>
-    
+    <string name="all">All</string>
+    <string name="none">None</string>
+
     <plurals name="file_plural">
         <item quantity="one">file</item>
         <item quantity="other">files</item>
