@@ -1,7 +1,14 @@
 package com.tassadar.vnote;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -18,10 +25,6 @@ import android.widget.CheckBox;
 import android.widget.ShareActionProvider;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class MainActivity extends ListActivity implements OnItemClickListener
 {
@@ -36,7 +39,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        m_selected = new ArrayList<CheckBox>();
+        m_selected = new ArrayList<SelectedItem>();
         
         Intent intent = getIntent();
         String action = intent.getAction();
@@ -97,6 +100,13 @@ public class MainActivity extends ListActivity implements OnItemClickListener
     }
     
     private void loadNotes() {
+        m_selected.clear();
+        if(m_action_mode != null)
+        {
+            m_action_mode.finish();
+            m_action_mode = null;
+        }
+
         String[] from = new String[] { "note", "date" };
         int[] to = new int[] { R.id.note_line, R.id.note_date };
 
@@ -118,7 +128,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener
             fillMaps.add(map);
         }
         
-        SimpleAdapter adapter = new SimpleAdapter(this, fillMaps, R.layout.note_list_item, from, to); 
+        NoReuseSimpleAdapter adapter = new NoReuseSimpleAdapter(this, fillMaps, R.layout.note_list_item, from, to); 
         setListAdapter(adapter);
     }
     
@@ -133,7 +143,9 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         CheckBox b = (CheckBox)v;
         if(b.isChecked())
         {
-            m_selected.add(b);
+            int idx = getListView().getPositionForView(b);
+            SelectedItem it = new SelectedItem(b, idx);
+            m_selected.add(it);
             if (m_action_mode == null) {
                 // Start the CAB using the ActionMode.Callback defined above
                 m_action_mode = startActionMode(m_action_mode_callback);
@@ -141,7 +153,16 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         }
         else
         {
-            m_selected.remove(b);
+            int size = m_selected.size();
+            for(int i = 0; i < size; ++i)
+            {
+                if(m_selected.get(i).box == b)
+                {
+                    m_selected.remove(i);
+                    break;
+                }
+            }
+
             if(m_selected.isEmpty() && m_action_mode != null)
             {
                 m_action_mode.finish();
@@ -163,13 +184,9 @@ public class MainActivity extends ListActivity implements OnItemClickListener
             return;
 
         ArrayList<Uri> uris = new ArrayList<Uri>();
-        for(CheckBox b : m_selected) {
-            if(b == null)
-                continue;
+        for(SelectedItem it : m_selected) {
+            VntNote n = VntManager.getNotes().get(it.idx);
 
-            int idx = getListView().getPositionForView(b);
-            VntNote n = VntManager.getNotes().get(idx);
-            
             Uri u = Uri.fromFile(n.m_file);
             uris.add(u);
         }
@@ -177,8 +194,8 @@ public class MainActivity extends ListActivity implements OnItemClickListener
     }
     
     private void deselectAll() {
-        for(CheckBox b : m_selected) {
-            b.setChecked(false);
+        for(SelectedItem it : m_selected) {
+            it.box.setChecked(false);
         }
         m_selected.clear();
     }
@@ -201,11 +218,9 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         @Override
         public void onClick(DialogInterface arg0, int arg1) {
             ArrayList<VntNote> notes = new ArrayList<VntNote>();
-            for(CheckBox b : m_selected) {
-                int idx = getListView().getPositionForView(b);
-                notes.add(VntManager.getNotes().get(idx));
-            }
-            
+            for(SelectedItem it : m_selected)
+                notes.add(VntManager.getNotes().get(it.idx));
+
             for(VntNote n : notes)
                 VntManager.eraseNote(n);
 
@@ -290,9 +305,38 @@ public class MainActivity extends ListActivity implements OnItemClickListener
             m_action_mode = null;
         }
     };
-   
-    
+
+    private class NoReuseSimpleAdapter extends SimpleAdapter {
+
+        public NoReuseSimpleAdapter(Context context,
+                List<? extends Map<String, ?>> data, int resource,
+                String[] from, int[] to) {
+            super(context, data, resource, from, to);
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return getCount();
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return position;
+        }
+    }
+
+    private class SelectedItem
+    {
+        public SelectedItem(CheckBox box, int idx) {
+            this.box = box;
+            this.idx = idx;
+        }
+
+        public CheckBox box;
+        public int idx;
+    }
+
     private ActionMode m_action_mode;
-    private ArrayList<CheckBox> m_selected;
+    private ArrayList<SelectedItem> m_selected;
     private Intent m_share_intent;
 }
