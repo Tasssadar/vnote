@@ -127,8 +127,10 @@ public class MainActivity extends ListActivity implements OnItemClickListener
             map.put("date", f.format(n.m_mod_date));
             fillMaps.add(map);
         }
-        
-        NoReuseSimpleAdapter adapter = new NoReuseSimpleAdapter(this, fillMaps, R.layout.note_list_item, from, to); 
+
+        NoReuseSimpleAdapter adapter = null;
+        if(!fillMaps.isEmpty())
+            adapter = new NoReuseSimpleAdapter(this, fillMaps, R.layout.note_list_item, from, to);
         setListAdapter(adapter);
     }
     
