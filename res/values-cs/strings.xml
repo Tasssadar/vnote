@@ -14,11 +14,12 @@
     <string name="note_selected">Výběr: %1$d %2$s</string>
     <string name="erase_notes_text">Opravdu chcete smazat %1$d %2$s?</string>
     <string name="erase_notes_title">Smazat poznámky</string>
-    <string name="search">Hledat</string>
     <string name="share">Sdílet</string>
     <string name="monospace">Používat monospace font</string>
     <string name="all">Všechny</string>
     <string name="none">Žádné</string>
+    <string name="search">Hledat&#8230;</string>
+    <string name="search_text">Zadejte část poznámky&#8230;</string>
 
     <plurals name="file_plural">
         <item quantity="one">soubor</item>

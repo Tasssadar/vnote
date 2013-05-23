@@ -1,33 +1,27 @@
 package com.tassadar.vnote;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
+import android.util.Log;
+import android.util.SparseIntArray;
+import android.view.*;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.CheckBox;
-import android.widget.ShareActionProvider;
-import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
-public class MainActivity extends ListActivity implements OnItemClickListener
-{
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class MainActivity extends ListActivity implements OnItemClickListener, SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener {
     private static final int REQ_IMPORT = 1;
     private static final int REQ_EDIT   = 2;
     private static final int REQ_NEW    = 3;
@@ -53,11 +47,25 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         loadNotes();
         
         getListView().setOnItemClickListener(this);
+
+        handleSearchIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleSearchIntent(intent);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_activity, menu);
+
+        menu.findItem(R.id.search).setOnActionExpandListener(this);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(this);
         return true;
     }
 
@@ -74,6 +82,11 @@ public class MainActivity extends ListActivity implements OnItemClickListener
             default: break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem item) {
+        return true;
     }
     
     @Override
@@ -98,8 +111,20 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         m_share_intent.setType("*/*");
         updateShareIntent();
     }
-    
+
     private void loadNotes() {
+        loadNotes(m_search_string);
+    }
+
+    private void loadNotes(String search) {
+        if(search != null) {
+            search = search.toLowerCase();
+            m_note_indexes = new SparseIntArray();
+        } else
+            m_note_indexes = null;
+
+        m_search_string = search;
+
         m_selected.clear();
         if(m_action_mode != null)
         {
@@ -115,7 +140,13 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         SimpleDateFormat f = new SimpleDateFormat("d.M.yyyy H:mm");
         ArrayList<VntNote> notes = VntManager.getNotes();
         String line;
-        for(VntNote n : notes) {
+        int size = notes.size();
+        int listItr = 0;
+        for(int i = 0; i < size; ++i) {
+            VntNote n = notes.get(i);
+            if(search != null && !n.m_text.toLowerCase().contains(search))
+                continue;
+
             int end = n.m_text.indexOf("\n");
             if(end == -1)
                 end = n.m_text.length();
@@ -126,6 +157,9 @@ public class MainActivity extends ListActivity implements OnItemClickListener
             map.put("note", line);
             map.put("date", f.format(n.m_mod_date));
             fillMaps.add(map);
+
+            if(m_note_indexes != null)
+                m_note_indexes.append(listItr++, i);
         }
 
         NoReuseSimpleAdapter adapter = null;
@@ -137,7 +171,12 @@ public class MainActivity extends ListActivity implements OnItemClickListener
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent i = new Intent(this, NoteActivity.class);
-        i.putExtra("vntIdx", position);
+        if(m_note_indexes == null)
+            i.putExtra("vntIdx", position);
+        else {
+            int idx = m_note_indexes.get(position);
+            i.putExtra("vntIdx", idx);
+        }
         startActivityForResult(i, REQ_EDIT);
     }
     
@@ -146,6 +185,9 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         if(b.isChecked())
         {
             int idx = getListView().getPositionForView(b);
+            if(m_note_indexes != null)
+                idx = m_note_indexes.get(idx);
+
             SelectedItem it = new SelectedItem(b, idx);
             m_selected.add(it);
             if (m_action_mode == null) {
@@ -215,7 +257,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener
 
         builder.create().show();
     }
-    
+
     private class DeleteListener implements OnClickListener {
         @Override
         public void onClick(DialogInterface arg0, int arg1) {
@@ -264,7 +306,35 @@ public class MainActivity extends ListActivity implements OnItemClickListener
         String str = String.format(getString(R.string.imported), uris.size(), plural);
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
-    
+
+    private void handleSearchIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            loadNotes(query);
+        }
+    }
+
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem item) {
+        m_search_string = null;
+        loadNotes();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        if(s.isEmpty()) {
+            m_search_string = null;
+            loadNotes();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
     private ActionMode.Callback m_action_mode_callback = new ActionMode.Callback() {
 
         // Called when the action mode is created; startActionMode() was called
@@ -341,4 +411,6 @@ public class MainActivity extends ListActivity implements OnItemClickListener
     private ActionMode m_action_mode;
     private ArrayList<SelectedItem> m_selected;
     private Intent m_share_intent;
+    private String m_search_string;
+    private SparseIntArray m_note_indexes;
 }
