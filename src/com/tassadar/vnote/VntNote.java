@@ -62,13 +62,17 @@ public class VntNote implements Comparable<VntNote> {
             return null;
         }
 
-        if (res.m_text == null || res.m_creation_date == null)
+        if (res.m_text == null)
         {
-            Log.e("VNote", "Skipping note because something is null!");
-            res = null;
+            Log.e("VNote", "Skipping note because text is null!");
+            return null;
         }
-        // Some .vnts don't have LAST-MODIFIED section
-        else if(res.m_mod_date == null)
+
+        // Lets require only BODY tag
+        if(res.m_creation_date == null)
+            res.m_creation_date = new Date();
+
+        if(res.m_mod_date == null)
             res.m_mod_date = res.m_creation_date;
 
         return res;
