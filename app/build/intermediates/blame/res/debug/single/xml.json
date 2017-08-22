@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/xml/filepaths.xml",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/xml/filepaths.xml"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/xml/searchable.xml",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/xml/searchable.xml"
+    }
+]

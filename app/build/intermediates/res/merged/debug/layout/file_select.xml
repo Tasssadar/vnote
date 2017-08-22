@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <TextView android:id="@+id/path_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+    <ScrollView android:id="@+id/scroll_view"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout android:id="@+id/file_list"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+    </ScrollView>
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#e2f4fb"
+        android:orientation="horizontal"
+        android:gravity="center|left"
+        android:padding="4dp">
+        <Button android:id="@+id/btn_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all"
+            android:onClick="onAllClicked" />
+        <Button android:id="@+id/btn_none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/none"
+            android:onClick="onNoneClicked" />
+        <TextView android:id="@+id/selected_count"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"/>
+        <Button android:id="@+id/btn_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/import_t"
+            android:enabled="false"
+            android:onClick="onImportClicked"/> 
+    </LinearLayout>
+</LinearLayout>
+

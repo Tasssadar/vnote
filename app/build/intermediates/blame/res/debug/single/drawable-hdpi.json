@@ -1,0 +1,54 @@
+[
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/share.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/share.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/content_save.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/content_save.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/content_new.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/content_new.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/navigation_cancel.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/navigation_cancel.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/btn_check_on_pressed_holo_light.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/btn_check_on_pressed_holo_light.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/collections_view_as_list.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/collections_view_as_list.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/btn_check_off_holo_light.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/btn_check_off_holo_light.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/action_search.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/action_search.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/content_discard.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/content_discard.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/collections_collection.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/collections_collection.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/btn_check_on_holo_light.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/btn_check_on_holo_light.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/app_icon.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/app_icon.png"
+    },
+    {
+        "merged": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/res/merged/debug/drawable-hdpi/btn_check_off_pressed_holo_light.png",
+        "source": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/drawable-hdpi/btn_check_off_pressed_holo_light.png"
+    }
+]

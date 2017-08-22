@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="dark_blue">#0099CC</drawable>
+    <drawable name="gray">#222222</drawable>
+    <drawable name="light_blue">#33B5E5</drawable>
+    <drawable name="light_gray">#777777</drawable>
+    <drawable name="light_gray_text">#777777</drawable>
+    <drawable name="transparent">#00000000</drawable>
+    <plurals name="file_plural">
+        <item quantity="one">file</item>
+        <item quantity="other">files</item>
+    </plurals>
+    <plurals name="note_plural">
+        <item quantity="one">note</item>
+        <item quantity="other">notes</item>
+    </plurals>
+    <string name="all">All</string>
+    <string name="app_name">VNote</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="edit_note">Edit note</string>
+    <string name="erase_notes_text">Do you really want to delete these %1$d %2$s?</string>
+    <string name="erase_notes_title">Delete notes</string>
+    <string name="import_notes">Import notes</string>
+    <string name="import_t">Import</string>
+    <string name="imported">%1$d %2$s successfuly imported</string>
+    <string name="monospace">Use monospace font</string>
+    <string name="need_perm">VNote needs the permission to import files!</string>
+    <string name="new_note">New note</string>
+    <string name="none">None</string>
+    <string name="note_selected">%1$d %2$s selected</string>
+    <string name="save">Save</string>
+    <string name="search">Search…</string>
+    <string name="search_text">Enter part of the note…</string>
+    <string name="selected">%1$d %2$s selected</string>
+    <string name="share">Share</string>
+    <style name="AppTheme" parent="android:Theme.Holo.Light"/>
+</resources>

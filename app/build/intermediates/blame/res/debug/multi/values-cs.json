@@ -1,0 +1,410 @@
+[
+    {
+        "outputFile": "/home/tassadar/AndroidStudioProjects/vnote1/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-cs/values-cs.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 6,
+                    "endColumn": 14,
+                    "endOffset": 231
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 1051,
+                        "endLine": 27,
+                        "endColumn": 14,
+                        "endOffset": 1227
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 236,
+                    "endLine": 11,
+                    "endColumn": 14,
+                    "endOffset": 416
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 1237,
+                        "endLine": 33,
+                        "endColumn": 14,
+                        "endOffset": 1417
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 421,
+                    "endColumn": 39,
+                    "endOffset": 456
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 4,
+                        "startOffset": 853,
+                        "endColumn": 39,
+                        "endOffset": 888
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 461,
+                    "endColumn": 42,
+                    "endOffset": 499
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 42,
+                        "endOffset": 93
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 504,
+                    "endColumn": 41,
+                    "endOffset": 541
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 427,
+                        "endColumn": 41,
+                        "endOffset": 464
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 546,
+                    "endColumn": 41,
+                    "endOffset": 583
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 12,
+                        "startColumn": 4,
+                        "startOffset": 509,
+                        "endColumn": 41,
+                        "endOffset": 546
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 588,
+                    "endColumn": 54,
+                    "endOffset": 638
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 372,
+                        "endColumn": 54,
+                        "endOffset": 422
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 643,
+                    "endColumn": 77,
+                    "endOffset": 716
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 14,
+                        "startColumn": 4,
+                        "startOffset": 610,
+                        "endColumn": 77,
+                        "endOffset": 683
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 721,
+                    "endColumn": 61,
+                    "endOffset": 778
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 4,
+                        "startOffset": 688,
+                        "endColumn": 61,
+                        "endOffset": 745
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 783,
+                    "endColumn": 60,
+                    "endOffset": 839
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 311,
+                        "endColumn": 60,
+                        "endOffset": 367
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 844,
+                    "endColumn": 47,
+                    "endOffset": 887
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 103,
+                        "endColumn": 47,
+                        "endOffset": 146
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 892,
+                    "endColumn": 54,
+                    "endOffset": 942
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 205,
+                        "endColumn": 54,
+                        "endOffset": 255
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 947,
+                    "endColumn": 61,
+                    "endOffset": 1004
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 4,
+                        "startOffset": 791,
+                        "endColumn": 61,
+                        "endOffset": 848
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 1009,
+                    "endColumn": 50,
+                    "endOffset": 1055
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 260,
+                        "endColumn": 50,
+                        "endOffset": 306
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 1060,
+                    "endColumn": 38,
+                    "endOffset": 1094
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 19,
+                        "startColumn": 4,
+                        "startOffset": 893,
+                        "endColumn": 38,
+                        "endOffset": 927
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 1099,
+                    "endColumn": 58,
+                    "endOffset": 1153
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 13,
+                        "startColumn": 4,
+                        "startOffset": 551,
+                        "endColumn": 58,
+                        "endOffset": 605
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 26,
+                    "startColumn": 4,
+                    "startOffset": 1158,
+                    "endColumn": 39,
+                    "endOffset": 1193
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 469,
+                        "endColumn": 39,
+                        "endOffset": 504
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 27,
+                    "startColumn": 4,
+                    "startOffset": 1198,
+                    "endColumn": 42,
+                    "endOffset": 1236
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 932,
+                        "endColumn": 48,
+                        "endOffset": 976
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 28,
+                    "startColumn": 4,
+                    "startOffset": 1241,
+                    "endColumn": 62,
+                    "endOffset": 1299
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 981,
+                        "endColumn": 68,
+                        "endOffset": 1045
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 29,
+                    "startColumn": 4,
+                    "startOffset": 1304,
+                    "endColumn": 53,
+                    "endOffset": 1353
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 151,
+                        "endColumn": 53,
+                        "endOffset": 200
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 30,
+                    "startColumn": 4,
+                    "startOffset": 1358,
+                    "endColumn": 40,
+                    "endOffset": 1394
+                },
+                "from": {
+                    "file": "/home/tassadar/AndroidStudioProjects/vnote1/app/src/main/res/values-cs/strings.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 4,
+                        "startOffset": 750,
+                        "endColumn": 40,
+                        "endOffset": 786
+                    }
+                }
+            }
+        ]
+    }
+]
