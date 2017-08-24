@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
@@ -27,7 +28,7 @@ import java.util.Locale;
 
 public class FileManagerActivity extends Activity implements FileItemClicked, ActivityCompat.OnRequestPermissionsResultCallback
 {
-    private static final String START_PATH = "/sdcard";
+    private static final String START_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
     
     /** Called when the activity is first created. */
     @Override

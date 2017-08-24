@@ -21,6 +21,7 @@
     <string name="search">Search&#8230;</string>
     <string name="search_text">Enter part of the note&#8230;</string>
     <string name="need_perm">VNote needs the permission to import files!</string>
+    <string name="selfshare">No apps to share the notes!</string>
 
     <plurals name="file_plural">
         <item quantity="one">file</item>

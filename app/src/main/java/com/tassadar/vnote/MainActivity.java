@@ -3,6 +3,7 @@ package com.tassadar.vnote;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.ContentProvider;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -29,6 +30,8 @@ public class MainActivity extends ListActivity implements OnItemClickListener, S
     private static final int REQ_IMPORT = 1;
     private static final int REQ_EDIT   = 2;
     private static final int REQ_NEW    = 3;
+
+    private static final String EXTRA_VNOTE_REFERRER = "com.tassadar.vnote.REFERRER";
 
     /** Called when the activity is first created. */
     @Override
@@ -271,8 +274,11 @@ public class MainActivity extends ListActivity implements OnItemClickListener, S
     }
     
     private void handleIntentSingle(Intent intent) {
-        Log.i("MIME", intent.getType());
-        Log.i("MIME", intent.getDataString());
+        if(BuildConfig.APPLICATION_ID.equals(intent.getStringExtra(EXTRA_VNOTE_REFERRER))) {
+            Toast.makeText(this, R.string.selfshare, Toast.LENGTH_SHORT);
+            return;
+        }
+
         Uri u = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
         if (u == null)
             u = intent.getData();
@@ -288,6 +294,11 @@ public class MainActivity extends ListActivity implements OnItemClickListener, S
     }
 
     private void handleIntentMultiple(Intent intent) {
+        if(BuildConfig.APPLICATION_ID.equals(intent.getStringExtra(EXTRA_VNOTE_REFERRER))) {
+            Toast.makeText(this, R.string.selfshare, Toast.LENGTH_SHORT);
+            return;
+        }
+
         ArrayList<Uri> uris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
         if (uris == null)
             return;
@@ -357,6 +368,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener, S
                     Intent i = new Intent();
                     i.setAction(Intent.ACTION_SEND_MULTIPLE);
                     i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    i.putExtra(EXTRA_VNOTE_REFERRER, BuildConfig.APPLICATION_ID);
                     ArrayList<Uri> uris = new ArrayList<>();
                     for(SelectedItem it : m_selected) {
                         File f = VntManager.getNotes().get(it.idx).m_file;
