@@ -87,7 +87,7 @@ public class NoteActivity extends Activity
         
         SharedPreferences.Editor editor = getPreferences(MODE_PRIVATE).edit();
         editor.putBoolean("use_monospace", use_monospace);
-        editor.commit();
+        editor.apply();
     }
     
     VntNote m_note;

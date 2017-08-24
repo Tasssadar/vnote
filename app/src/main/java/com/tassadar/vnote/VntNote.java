@@ -26,7 +26,7 @@ public class VntNote implements Comparable<VntNote> {
             while((line = in.readLine()) != null) {
                 line = line.trim();
 
-                if(body == 0 && line.startsWith("BODY;") && line.endsWith("=")) {
+                if(body == 0 && (line.startsWith("BODY;") || line.startsWith("BODY:")) && line.endsWith("=")) {
                     body = 1;
                     lines.add(line.substring(0, line.length()-1));
                 } else if(body == 1) {
@@ -51,10 +51,12 @@ public class VntNote implements Comparable<VntNote> {
 
             for(String l : lines) {
                 idx = l.indexOf(":");
-                head = l.substring(0, idx);
-                data = l.substring(idx+1);
-                
-                res.handleLine(head, data);
+                if(idx != -1) {
+                    head = l.substring(0, idx);
+                    data = l.substring(idx + 1);
+
+                    res.handleLine(head, data);
+                }
             }
         }
         catch(Exception ex) {
