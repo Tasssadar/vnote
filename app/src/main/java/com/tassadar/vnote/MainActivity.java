@@ -275,7 +275,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener, S
     
     private void handleIntentSingle(Intent intent) {
         if(BuildConfig.APPLICATION_ID.equals(intent.getStringExtra(EXTRA_VNOTE_REFERRER))) {
-            Toast.makeText(this, R.string.selfshare, Toast.LENGTH_SHORT);
+            Toast.makeText(this, R.string.selfshare, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -295,7 +295,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener, S
 
     private void handleIntentMultiple(Intent intent) {
         if(BuildConfig.APPLICATION_ID.equals(intent.getStringExtra(EXTRA_VNOTE_REFERRER))) {
-            Toast.makeText(this, R.string.selfshare, Toast.LENGTH_SHORT);
+            Toast.makeText(this, R.string.selfshare, Toast.LENGTH_SHORT).show();
             return;
         }
 
